@@ -98,8 +98,36 @@ class SortingRobot:
         """
         # Fill this out
         pass
+        
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off()
+
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+                if self.compare_item() == -1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_right()
+                self.swap_item()
+                self.move_left()
 
 
+#   * It can move left or right.
+#   * It can pick up an item
+#     * If it tries to pick up an item while already holding one, it will swap the items instead.
+#   * It can compare the item it's holding to the item in front of it.
+#   * It can switch a light on its head on or off.
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
